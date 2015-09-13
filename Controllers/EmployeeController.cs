@@ -15,6 +15,7 @@ namespace LearnMVC.Controllers
             return "Wassup World?! :D";
         }
 
+        //[Authorize]
         public ActionResult Index()
         {
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
@@ -26,7 +27,7 @@ namespace LearnMVC.Controllers
             {
                 EmployeeViewModel empViewModel = new EmployeeViewModel();
                 empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
-                empViewModel.Salary = emp.Salary.ToString("C");
+                empViewModel.Salary = emp.Salary.GetValueOrDefault(0).ToString("C");
                 empViewModel.SalaryColor = emp.Salary > 35000 ? "yellow" : "green";
 
                 empViewModels.Add(empViewModel);
@@ -34,14 +35,14 @@ namespace LearnMVC.Controllers
 
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
             employeeListViewModel.Employees = empViewModels;
-            //employeeListViewModel.UserName = "Admin";
+            employeeListViewModel.UserName = "Admin";
 
             return View("Index", employeeListViewModel);
         }
 
         public ActionResult AddNew()
         {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
@@ -61,14 +62,14 @@ namespace LearnMVC.Controllers
                         createEmployeeViewModel.FirstName = e.FirstName;
                         createEmployeeViewModel.LastName = e.LastName;
 
-                        //if (e.Salary.hasvalue)
-                        //{
-                        //    createEmployeeViewModel.Salary = e.Salary.ToString();
-                        //}
-                        //else
-                        //{
-                        //    createEmployeeViewModel.Salary = ModelState["Salary"].Value.AttemptedValue;
-                        //}
+                        if (e.Salary.HasValue)
+                        {
+                            createEmployeeViewModel.Salary = e.Salary.ToString();
+                        }
+                        else
+                        {
+                            createEmployeeViewModel.Salary = ModelState["Salary"].Value.AttemptedValue;
+                        }
 
                         return View("CreateEmployee", createEmployeeViewModel);
                     }

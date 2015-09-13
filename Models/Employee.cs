@@ -12,14 +12,15 @@ namespace LearnMVC.Models
         [Key]
         public int EmployeeID { get; set; }
 
-        //[Required(ErrorMessage ="Enter first name")]
+        [Required(ErrorMessage = "Enter first name")]
         [FirstNameValidation]
         public string FirstName { get; set; }
 
-        //[Required(ErrorMessage ="Enter last name")]
+        [Required(ErrorMessage = "Enter last name")]
+        [StringLength(15, ErrorMessage ="Last name should not be longer than 15 characters.")]
         public string LastName { get; set; }
 
-        //[DataType(typeof(int), "Salary must be a whole number", "SalaryDataTypeInt", )]
-        public int Salary { get; set; }
+        [SalaryValidation]
+        public int? Salary { get; set; }
     }
 }

@@ -21,5 +21,10 @@ namespace LearnMVC.Models
             salesDal.SaveChanges();
             return e;
         }
+
+        public bool IsValidUser(UserDetails u)
+        {
+            return (u.UserName == "Admin" && u.Password == "Admin");
+        }
     }
 }
