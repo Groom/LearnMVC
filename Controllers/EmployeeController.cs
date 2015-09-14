@@ -37,6 +37,10 @@ namespace LearnMVC.Controllers
             employeeListViewModel.Employees = empViewModels;
             employeeListViewModel.UserName = "Admin";
 
+            employeeListViewModel.FooterData = new FooterViewModel();
+            employeeListViewModel.FooterData.CompanyName = "Acme Inc.";
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString(); 
+
             return View("Index", employeeListViewModel);
         }
 
