@@ -1,8 +1,4 @@
 ﻿using LearnMVC.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -23,16 +19,18 @@ namespace LearnMVC.Controllers
             if (ModelState.IsValid)
             {
                 EmployeeBusinessLayer empBL = new EmployeeBusinessLayer();
-                if (empBL.IsValidUser(u))
+                UserStatus status = empBL.GetUserValidity(u);
+                bool IsAdmin = status == UserStatus.AuthenticatedAdmin;
+
+                if (status == UserStatus.NonAuthenticatedUser)
                 {
-                    FormsAuthentication.SetAuthCookie(u.UserName, false);
-                    return RedirectToAction("Index", "Employee");
-                }
-                else
-                {
-                    ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                    ModelState.AddModelError("CredentialError", "Invalid Username or Password.");
                     return View("Login");
                 }
+
+                    FormsAuthentication.SetAuthCookie(u.UserName, false);
+                    Session["IsAdmin"] = IsAdmin;
+                    return RedirectToAction("Index", "Employee");
             }
             else
             {

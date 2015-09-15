@@ -1,8 +1,6 @@
-﻿using System;
+﻿using LearnMVC.DataAccessLayer;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using LearnMVC.DataAccessLayer;
 
 namespace LearnMVC.Models
 {
@@ -22,9 +20,20 @@ namespace LearnMVC.Models
             return e;
         }
 
-        public bool IsValidUser(UserDetails u)
+        public UserStatus GetUserValidity(UserDetails u)
         {
-            return (u.UserName == "Admin" && u.Password == "Admin");
+            if (u.UserName == "Admin" && u.Password == "Admin")
+            {
+                return UserStatus.AuthenticatedAdmin;
+            }
+            else if (u.UserName == "Gorm" && u.Password == "Kjeldsen")
+            {
+                return UserStatus.AuthenticatedUser;
+            }
+            else
+            {
+                return UserStatus.NonAuthenticatedUser;
+            }
         }
     }
 }

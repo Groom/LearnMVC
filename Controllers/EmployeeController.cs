@@ -1,4 +1,5 @@
-﻿using LearnMVC.Models;
+﻿using LearnMVC.Filters;
+using LearnMVC.Models;
 using LearnMVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -44,11 +45,13 @@ namespace LearnMVC.Controllers
             return View("Index", employeeListViewModel);
         }
 
+        [AdminFilter]
         public ActionResult AddNew()
         {
             return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
+        [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -82,6 +85,18 @@ namespace LearnMVC.Controllers
             }
 
             return new EmptyResult();
+        }
+
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
         }
     }
 }
