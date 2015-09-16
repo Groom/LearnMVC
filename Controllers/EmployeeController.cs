@@ -17,6 +17,7 @@ namespace LearnMVC.Controllers
         }
 
         //[Authorize]
+        [HeaderFooterFilter]
         public ActionResult Index()
         {
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
@@ -36,31 +37,33 @@ namespace LearnMVC.Controllers
 
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
             employeeListViewModel.Employees = empViewModels;
-            employeeListViewModel.UserName = "Admin";
+            //employeeListViewModel.UserName = "Admin";
 
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "Acme Inc.";
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString(); 
+            //employeeListViewModel.FooterData = new FooterViewModel();
+            //employeeListViewModel.FooterData.CompanyName = "Acme Inc.";
+            //employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString(); 
 
             return View("Index", employeeListViewModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel createEmployeeViewModel = new CreateEmployeeViewModel();
 
-            createEmployeeViewModel.FooterData = new FooterViewModel();
-            createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
-            createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            //createEmployeeViewModel.FooterData = new FooterViewModel();
+            //createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
+            //createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
 
-            createEmployeeViewModel.UserName = User.Identity.Name;
+            //createEmployeeViewModel.UserName = User.Identity.Name;
 
             return View("CreateEmployee", createEmployeeViewModel);
         }
 
         [AdminFilter]
         [ValidateAntiForgeryToken]
+        [HeaderFooterFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -78,11 +81,11 @@ namespace LearnMVC.Controllers
                         createEmployeeViewModel.FirstName = e.FirstName;
                         createEmployeeViewModel.LastName = e.LastName;
 
-                        createEmployeeViewModel.FooterData = new FooterViewModel();
-                        createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
-                        createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+                        //createEmployeeViewModel.FooterData = new FooterViewModel();
+                        //createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
+                        //createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
 
-                        createEmployeeViewModel.UserName = User.Identity.Name;
+                        //createEmployeeViewModel.UserName = User.Identity.Name;
 
                         if (e.Salary.HasValue)
                         {
