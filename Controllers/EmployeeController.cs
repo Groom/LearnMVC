@@ -48,10 +48,19 @@ namespace LearnMVC.Controllers
         [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel createEmployeeViewModel = new CreateEmployeeViewModel();
+
+            createEmployeeViewModel.FooterData = new FooterViewModel();
+            createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
+            createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+
+            createEmployeeViewModel.UserName = User.Identity.Name;
+
+            return View("CreateEmployee", createEmployeeViewModel);
         }
 
         [AdminFilter]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -68,6 +77,12 @@ namespace LearnMVC.Controllers
                         CreateEmployeeViewModel createEmployeeViewModel = new CreateEmployeeViewModel();
                         createEmployeeViewModel.FirstName = e.FirstName;
                         createEmployeeViewModel.LastName = e.LastName;
+
+                        createEmployeeViewModel.FooterData = new FooterViewModel();
+                        createEmployeeViewModel.FooterData.CompanyName = "Acme Inc.";
+                        createEmployeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+
+                        createEmployeeViewModel.UserName = User.Identity.Name;
 
                         if (e.Salary.HasValue)
                         {

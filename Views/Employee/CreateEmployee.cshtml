@@ -1,27 +1,27 @@
 ﻿@using LearnMVC.ViewModels
 @model CreateEmployeeViewModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@section TitleSection{
+    MyView
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateEmployee</title>
-
-    <script>
+@section HeaderSection{
+<script>
     function ResetForm() {
         document.getElementById('TxtFName').value = "";
         document.getElementById('TxtLName').value = "";
         document.getElementById('TxtSalary').value = "";
     }
-    </script>
-</head>
-<body>
+</script>
+}
+
+@section ContentBody{
     <div> 
         <form action="/Employee/SaveEmployee" method="post">
+            @Html.AntiForgeryToken()
             <table >
                 <tr>
                     <td>First Name: </td>
@@ -60,5 +60,4 @@
             </table>
         </form>
     </div>
-</body>
-</html>
+}
