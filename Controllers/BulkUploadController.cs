@@ -21,6 +21,7 @@ namespace LearnMVC.Controllers
         }
 
         [AdminFilter]
+        [HandleError]
         public async Task<ActionResult> Upload(FileUploadViewModel model)
         {
             int t1 = Thread.CurrentThread.ManagedThreadId;
