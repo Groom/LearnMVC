@@ -35,5 +35,12 @@ namespace LearnMVC.Models
                 return UserStatus.NonAuthenticatedUser;
             }
         }
+
+        public void UploadEmployees(List<Employee> employees)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.Employees.AddRange(employees);
+            salesDal.SaveChanges();
+        }
     }
 }

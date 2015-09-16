@@ -1,0 +1,19 @@
+﻿@using LearnMVC.ViewModels
+@model FileUploadViewModel
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@section TitleSection{
+    Bulk Upload
+}
+
+@section ContentBody{
+    <div>
+        <a href="/Employee/Index">Back</a>
+        <form action="/BulkUpload/Upload" method="post" enctype="multipart/form-data">
+            Select file: <input type="file" name="fileUpload" value=""/>
+            <input type="submit" name="btnFileupload" value="Upload"/>
+        </form>
+    </div>
+}

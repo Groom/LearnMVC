@@ -164,6 +164,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\BulkUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="ViewModels\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\FileUploadViewModel.cs" />
     <Compile Include="ViewModels\FooterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +255,7 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Employee\AddNewLink.cshtml" />
     <Content Include="Views\Shared\MyLayout.cshtml" />
+    <Content Include="Views\BulkUpload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
