@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using LearnMVC.Filters;
+using System.Web.Mvc;
 
 namespace LearnMVC
 {
@@ -6,7 +7,8 @@ namespace LearnMVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
+            filters.Add(new EmployeeExceptionFilter());
             //filters.Add(new AuthorizeAttribute());
         }
     }
