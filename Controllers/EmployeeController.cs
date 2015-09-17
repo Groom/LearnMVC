@@ -18,6 +18,7 @@ namespace LearnMVC.Controllers
 
         //[Authorize]
         [HeaderFooterFilter]
+        [Route("Employee/List")]
         public ActionResult Index()
         {
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();

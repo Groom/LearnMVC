@@ -13,6 +13,8 @@ namespace LearnMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Upload",
                 url: "Employee/BulkUpload",
